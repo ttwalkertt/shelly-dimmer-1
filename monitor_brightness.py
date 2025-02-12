@@ -54,7 +54,7 @@ def on_message(client, userdata, msg):
 
             # Display the current status
             status = "ON" if is_on else "OFF"
-            logging.info(f"Status: {status} | Brightness: {brightness}")
+            logging.info(f"Topic: {msg.topic} | Status: {status} | Brightness: {brightness}")
 
     except json.JSONDecodeError:
         logging.error("Error: Received invalid JSON payload.")
