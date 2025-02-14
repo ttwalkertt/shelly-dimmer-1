@@ -1,0 +1,157 @@
+2025-02-14 16:21:55,189 - DEBUG - SmartKnobParser initialized
+2025-02-14 16:23:18,308 - DEBUG - SmartKnobParser initialized
+2025-02-14 16:23:18,797 - INFO - Connected to MQTT Broker
+2025-02-14 16:23:23,868 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"single","battery":1,"linkquality":40,"operation_mode":"event","voltage":2500}
+2025-02-14 16:23:23,868 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"single","battery":1,"linkquality":40,"operation_mode":"event","voltage":2500}
+2025-02-14 16:23:23,868 - DEBUG - Handling event action: single
+2025-02-14 16:23:23,868 - INFO - Single press detected. New output: True
+2025-02-14 16:23:26,787 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"single","battery":1,"linkquality":25,"operation_mode":"event","voltage":2500}
+2025-02-14 16:23:26,788 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"single","battery":1,"linkquality":25,"operation_mode":"event","voltage":2500}
+2025-02-14 16:23:26,788 - DEBUG - Handling event action: single
+2025-02-14 16:23:26,788 - INFO - Single press detected. New output: False
+2025-02-14 16:23:31,119 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"single","battery":1,"linkquality":32,"operation_mode":"event","voltage":2500}
+2025-02-14 16:23:31,119 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"single","battery":1,"linkquality":32,"operation_mode":"event","voltage":2500}
+2025-02-14 16:23:31,119 - DEBUG - Handling event action: single
+2025-02-14 16:23:31,120 - INFO - Single press detected. New output: True
+2025-02-14 16:23:37,057 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"single","battery":1,"linkquality":32,"operation_mode":"event","voltage":2500}
+2025-02-14 16:23:37,058 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"single","battery":1,"linkquality":32,"operation_mode":"event","voltage":2500}
+2025-02-14 16:23:37,058 - DEBUG - Handling event action: single
+2025-02-14 16:23:37,058 - INFO - Single press detected. New output: False
+2025-02-14 16:23:41,023 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"rotate_left","battery":1,"linkquality":21,"operation_mode":"event","voltage":2500}
+2025-02-14 16:23:41,023 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"rotate_left","battery":1,"linkquality":21,"operation_mode":"event","voltage":2500}
+2025-02-14 16:23:41,023 - DEBUG - Handling event action: rotate_left
+2025-02-14 16:23:41,024 - INFO - Knob rotated left by 10. New brightness: 0
+2025-02-14 16:23:46,241 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"rotate_left","battery":1,"linkquality":14,"operation_mode":"event","voltage":2500}
+2025-02-14 16:23:46,242 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"rotate_left","battery":1,"linkquality":14,"operation_mode":"event","voltage":2500}
+2025-02-14 16:23:46,242 - DEBUG - Handling event action: rotate_left
+2025-02-14 16:23:46,242 - INFO - Knob rotated left by 10. New brightness: 0
+2025-02-14 16:23:51,503 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"rotate_left","battery":1,"linkquality":14,"operation_mode":"event","voltage":2500}
+2025-02-14 16:23:51,503 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"rotate_left","battery":1,"linkquality":14,"operation_mode":"event","voltage":2500}
+2025-02-14 16:23:51,504 - DEBUG - Handling event action: rotate_left
+2025-02-14 16:23:51,504 - INFO - Knob rotated left by 10. New brightness: 0
+2025-02-14 16:26:25,410 - DEBUG - SmartKnobParser initialized
+2025-02-14 16:26:25,903 - INFO - Connected to MQTT Broker
+2025-02-14 16:26:31,293 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"rotate_left","battery":1,"linkquality":0,"operation_mode":"event","voltage":2500}
+2025-02-14 16:26:31,293 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"rotate_left","battery":1,"linkquality":0,"operation_mode":"event","voltage":2500}
+2025-02-14 16:26:31,294 - DEBUG - Handling event action: rotate_left
+2025-02-14 16:26:31,294 - INFO - Knob rotated left by 10. New brightness: 0
+2025-02-14 16:26:34,555 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"rotate_right","battery":1,"linkquality":10,"operation_mode":"event","voltage":2500}
+2025-02-14 16:26:34,555 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"rotate_right","battery":1,"linkquality":10,"operation_mode":"event","voltage":2500}
+2025-02-14 16:26:34,555 - DEBUG - Handling event action: rotate_right
+2025-02-14 16:26:34,556 - INFO - Knob rotated right by 10. New brightness: 10
+2025-02-14 16:26:37,158 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"rotate_right","battery":1,"linkquality":0,"operation_mode":"event","voltage":2500}
+2025-02-14 16:26:37,159 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"rotate_right","battery":1,"linkquality":0,"operation_mode":"event","voltage":2500}
+2025-02-14 16:26:37,159 - DEBUG - Handling event action: rotate_right
+2025-02-14 16:26:37,159 - INFO - Knob rotated right by 10. New brightness: 20
+2025-02-14 16:26:39,401 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"single","battery":1,"linkquality":10,"operation_mode":"event","voltage":2500}
+2025-02-14 16:26:39,401 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"single","battery":1,"linkquality":10,"operation_mode":"event","voltage":2500}
+2025-02-14 16:26:39,402 - DEBUG - Handling event action: single
+2025-02-14 16:26:39,402 - INFO - Single press detected. New output: True
+2025-02-14 16:26:42,269 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"single","battery":1,"linkquality":0,"operation_mode":"event","voltage":2500}
+2025-02-14 16:26:42,269 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"single","battery":1,"linkquality":0,"operation_mode":"event","voltage":2500}
+2025-02-14 16:26:42,269 - DEBUG - Handling event action: single
+2025-02-14 16:26:42,270 - INFO - Single press detected. New output: False
+2025-02-14 16:26:44,826 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"battery":1,"linkquality":18,"operation_mode":"command","voltage":2500}
+2025-02-14 16:26:44,826 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"battery":1,"linkquality":18,"operation_mode":"command","voltage":2500}
+2025-02-14 16:26:44,826 - DEBUG - Handling command action: None
+2025-02-14 16:26:44,826 - ERROR - Unhandled command action: None
+2025-02-14 16:26:47,183 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_down","action_step_size":73,"action_transition_time":0.02,"battery":1,"linkquality":0,"operation_mode":"command","voltage":2500}
+2025-02-14 16:26:47,183 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_down","action_step_size":73,"action_transition_time":0.02,"battery":1,"linkquality":0,"operation_mode":"command","voltage":2500}
+2025-02-14 16:26:47,183 - DEBUG - Handling command action: brightness_step_down
+2025-02-14 16:26:47,183 - INFO - Decreasing brightness by 73. New brightness: 0
+2025-02-14 16:26:48,513 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_up","action_step_size":109,"action_transition_time":0.03,"battery":1,"linkquality":10,"operation_mode":"command","voltage":2500}
+2025-02-14 16:26:48,513 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_up","action_step_size":109,"action_transition_time":0.03,"battery":1,"linkquality":10,"operation_mode":"command","voltage":2500}
+2025-02-14 16:26:48,513 - DEBUG - Handling command action: brightness_step_up
+2025-02-14 16:26:48,514 - INFO - Increasing brightness by 109. New brightness: 100
+2025-02-14 16:26:48,811 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_up","action_step_size":37,"action_transition_time":0.02,"battery":1,"linkquality":0,"operation_mode":"command","voltage":2500}
+2025-02-14 16:26:48,811 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_up","action_step_size":37,"action_transition_time":0.02,"battery":1,"linkquality":0,"operation_mode":"command","voltage":2500}
+2025-02-14 16:26:48,811 - DEBUG - Handling command action: brightness_step_up
+2025-02-14 16:26:48,812 - INFO - Increasing brightness by 37. New brightness: 100
+2025-02-14 16:26:50,458 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_down","action_step_size":97,"action_transition_time":0.03,"battery":1,"linkquality":14,"operation_mode":"command","voltage":2500}
+2025-02-14 16:26:50,459 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_down","action_step_size":97,"action_transition_time":0.03,"battery":1,"linkquality":14,"operation_mode":"command","voltage":2500}
+2025-02-14 16:26:50,459 - DEBUG - Handling command action: brightness_step_down
+2025-02-14 16:26:50,459 - INFO - Decreasing brightness by 97. New brightness: 3
+2025-02-14 16:26:50,766 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_down","action_step_size":37,"action_transition_time":0.02,"battery":1,"linkquality":0,"operation_mode":"command","voltage":2500}
+2025-02-14 16:26:50,767 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_down","action_step_size":37,"action_transition_time":0.02,"battery":1,"linkquality":0,"operation_mode":"command","voltage":2500}
+2025-02-14 16:26:50,767 - DEBUG - Handling command action: brightness_step_down
+2025-02-14 16:26:50,767 - INFO - Decreasing brightness by 37. New brightness: 0
+2025-02-14 16:27:31,419 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"color_temperature_step_up","action_step_size":137,"action_transition_time":0.03,"battery":1,"linkquality":18,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:31,420 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"color_temperature_step_up","action_step_size":137,"action_transition_time":0.03,"battery":1,"linkquality":18,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:31,420 - DEBUG - Handling command action: color_temperature_step_up
+2025-02-14 16:27:31,421 - INFO - Increasing color temperature by 137
+2025-02-14 16:27:31,726 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"color_temperature_step_up","action_step_size":69,"action_transition_time":0.02,"battery":1,"linkquality":0,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:31,727 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"color_temperature_step_up","action_step_size":69,"action_transition_time":0.02,"battery":1,"linkquality":0,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:31,727 - DEBUG - Handling command action: color_temperature_step_up
+2025-02-14 16:27:31,727 - INFO - Increasing color temperature by 69
+2025-02-14 16:27:35,822 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"color_temperature_step_up","action_step_size":171,"action_transition_time":0.03,"battery":1,"linkquality":21,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:35,823 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"color_temperature_step_up","action_step_size":171,"action_transition_time":0.03,"battery":1,"linkquality":21,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:35,823 - DEBUG - Handling command action: color_temperature_step_up
+2025-02-14 16:27:35,823 - INFO - Increasing color temperature by 171
+2025-02-14 16:27:36,131 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"color_temperature_step_up","action_step_size":35,"action_transition_time":0.01,"battery":1,"linkquality":0,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:36,132 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"color_temperature_step_up","action_step_size":35,"action_transition_time":0.01,"battery":1,"linkquality":0,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:36,132 - DEBUG - Handling command action: color_temperature_step_up
+2025-02-14 16:27:36,132 - INFO - Increasing color temperature by 35
+2025-02-14 16:27:39,201 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_down","action_step_size":61,"action_transition_time":0.02,"battery":1,"linkquality":29,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:39,201 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_down","action_step_size":61,"action_transition_time":0.02,"battery":1,"linkquality":29,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:39,202 - DEBUG - Handling command action: brightness_step_down
+2025-02-14 16:27:39,202 - INFO - Decreasing brightness by 61. New brightness: 0
+2025-02-14 16:27:39,612 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_down","action_step_size":85,"action_transition_time":0.03,"battery":1,"linkquality":7,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:39,613 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_down","action_step_size":85,"action_transition_time":0.03,"battery":1,"linkquality":7,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:39,613 - DEBUG - Handling command action: brightness_step_down
+2025-02-14 16:27:39,613 - INFO - Decreasing brightness by 85. New brightness: 0
+2025-02-14 16:27:41,454 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_down","action_step_size":73,"action_transition_time":0.02,"battery":1,"linkquality":21,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:41,455 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_down","action_step_size":73,"action_transition_time":0.02,"battery":1,"linkquality":21,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:41,455 - DEBUG - Handling command action: brightness_step_down
+2025-02-14 16:27:41,455 - INFO - Decreasing brightness by 73. New brightness: 0
+2025-02-14 16:27:41,865 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_down","action_step_size":61,"action_transition_time":0.02,"battery":1,"linkquality":3,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:41,865 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_down","action_step_size":61,"action_transition_time":0.02,"battery":1,"linkquality":3,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:41,866 - DEBUG - Handling command action: brightness_step_down
+2025-02-14 16:27:41,866 - INFO - Decreasing brightness by 61. New brightness: 0
+2025-02-14 16:27:42,170 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_down","action_step_size":25,"action_transition_time":0.01,"battery":1,"linkquality":0,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:42,171 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_down","action_step_size":25,"action_transition_time":0.01,"battery":1,"linkquality":0,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:42,171 - DEBUG - Handling command action: brightness_step_down
+2025-02-14 16:27:42,171 - INFO - Decreasing brightness by 25. New brightness: 0
+2025-02-14 16:27:43,272 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_down","action_step_size":121,"action_transition_time":0.03,"battery":1,"linkquality":21,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:43,273 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_down","action_step_size":121,"action_transition_time":0.03,"battery":1,"linkquality":21,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:43,273 - DEBUG - Handling command action: brightness_step_down
+2025-02-14 16:27:43,273 - INFO - Decreasing brightness by 121. New brightness: 0
+2025-02-14 16:27:43,706 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_down","action_step_size":13,"action_transition_time":0.01,"battery":1,"linkquality":10,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:43,707 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_down","action_step_size":13,"action_transition_time":0.01,"battery":1,"linkquality":10,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:43,707 - DEBUG - Handling command action: brightness_step_down
+2025-02-14 16:27:43,707 - INFO - Decreasing brightness by 13. New brightness: 0
+2025-02-14 16:27:45,039 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_up","action_step_size":85,"action_transition_time":0.03,"battery":1,"linkquality":21,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:45,039 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_up","action_step_size":85,"action_transition_time":0.03,"battery":1,"linkquality":21,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:45,040 - DEBUG - Handling command action: brightness_step_up
+2025-02-14 16:27:45,040 - INFO - Increasing brightness by 85. New brightness: 85
+2025-02-14 16:27:45,346 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_up","action_step_size":73,"action_transition_time":0.02,"battery":1,"linkquality":3,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:45,346 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_up","action_step_size":73,"action_transition_time":0.02,"battery":1,"linkquality":3,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:45,347 - DEBUG - Handling command action: brightness_step_up
+2025-02-14 16:27:45,347 - INFO - Increasing brightness by 73. New brightness: 100
+2025-02-14 16:27:45,757 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_up","action_step_size":73,"action_transition_time":0.02,"battery":1,"linkquality":25,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:45,757 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_up","action_step_size":73,"action_transition_time":0.02,"battery":1,"linkquality":25,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:45,757 - DEBUG - Handling command action: brightness_step_up
+2025-02-14 16:27:45,757 - INFO - Increasing brightness by 73. New brightness: 100
+2025-02-14 16:27:46,496 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_down","action_step_size":13,"action_transition_time":0.01,"battery":1,"linkquality":7,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:46,497 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_down","action_step_size":13,"action_transition_time":0.01,"battery":1,"linkquality":7,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:46,497 - DEBUG - Handling command action: brightness_step_down
+2025-02-14 16:27:46,497 - INFO - Decreasing brightness by 13. New brightness: 87
+2025-02-14 16:27:46,987 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_down","action_step_size":97,"action_transition_time":0.03,"battery":1,"linkquality":10,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:46,987 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_down","action_step_size":97,"action_transition_time":0.03,"battery":1,"linkquality":10,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:46,987 - DEBUG - Handling command action: brightness_step_down
+2025-02-14 16:27:46,987 - INFO - Decreasing brightness by 97. New brightness: 0
+2025-02-14 16:27:47,227 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_down","action_step_size":61,"action_transition_time":0.02,"battery":1,"linkquality":18,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:47,227 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"brightness_step_down","action_step_size":61,"action_transition_time":0.02,"battery":1,"linkquality":18,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:47,227 - DEBUG - Handling command action: brightness_step_down
+2025-02-14 16:27:47,228 - INFO - Decreasing brightness by 61. New brightness: 0
+2025-02-14 16:27:49,440 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"color_temperature_step_up","action_step_size":137,"action_transition_time":0.03,"battery":1,"linkquality":18,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:49,441 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"color_temperature_step_up","action_step_size":137,"action_transition_time":0.03,"battery":1,"linkquality":18,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:49,441 - DEBUG - Handling command action: color_temperature_step_up
+2025-02-14 16:27:49,441 - INFO - Increasing color temperature by 137
+2025-02-14 16:27:49,748 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"color_temperature_step_up","action_step_size":86,"action_transition_time":0.02,"battery":1,"linkquality":25,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:49,748 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"color_temperature_step_up","action_step_size":86,"action_transition_time":0.02,"battery":1,"linkquality":25,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:49,749 - DEBUG - Handling command action: color_temperature_step_up
+2025-02-14 16:27:49,749 - INFO - Increasing color temperature by 86
+2025-02-14 16:27:50,058 - DEBUG - Received message on topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"color_temperature_step_up","action_step_size":35,"action_transition_time":0.01,"battery":1,"linkquality":36,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:50,058 - DEBUG - Parsing message from topic: zigbee2mqtt/Smart_Knob_1 with payload: {"action":"color_temperature_step_up","action_step_size":35,"action_transition_time":0.01,"battery":1,"linkquality":36,"operation_mode":"command","voltage":2500}
+2025-02-14 16:27:50,058 - DEBUG - Handling command action: color_temperature_step_up
+2025-02-14 16:27:50,059 - INFO - Increasing color temperature by 35
