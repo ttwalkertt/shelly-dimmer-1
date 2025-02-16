@@ -2,13 +2,12 @@ import json
 import paho.mqtt.client as mqtt
 import logging
 import os
-
+import threading
 
 # MQTT Connection
 MQTT_BROKER = "publicweb.local"  # Change this to your MQTT broker address
 MQTT_PORT = 1883  # Default MQTT port
 MQTT_TOPIC = "zigbee2mqtt/Smart_Knob_1"
-
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -64,16 +63,19 @@ class SmartKnobParser:
         logging.debug("SmartKnobParser initialized")
         self._brightness = 0
         self._output = False
+        self._lock = threading.Lock()
 
     @property
     def brightness(self):
         """Gets the current brightness value."""
-        return self._brightness
+        with self._lock:
+            return self._brightness
 
     @property
     def output(self):
         """Gets the current output state."""
-        return self._output
+        with self._lock:
+            return self._output
 
     def parse_message(self, topic: str, payload: str):
         """
@@ -145,13 +147,15 @@ class SmartKnobParser:
     def brightness_step_up(self, data):
         """Increases brightness by the specified step size."""
         step_size = data.get('action_step_size', 0)
-        self._brightness = min(MAX_BRIGHTNESS, self._brightness + step_size)
+        with self._lock:
+            self._brightness = min(MAX_BRIGHTNESS, self._brightness + step_size)
         logging.info(f"Increasing brightness by {step_size}. New brightness: {self._brightness}")
 
     def brightness_step_down(self, data):
         """Decreases brightness by the specified step size."""
         step_size = data.get('action_step_size', 0)
-        self._brightness = max(MIN_BRIGHTNESS, self._brightness - step_size)
+        with self._lock:
+            self._brightness = max(MIN_BRIGHTNESS, self._brightness - step_size)
         logging.info(f"Decreasing brightness by {step_size}. New brightness: {self._brightness}")
 
     def color_temperature_step_up(self, data):
@@ -164,19 +168,22 @@ class SmartKnobParser:
 
     def toggle(self, data):
         """Toggles the state."""
-        self._output = not self._output
+        with self._lock:
+            self._output = not self._output
         logging.info(f"Toggling state. New output: {self._output}")
 
     def rotate_left(self, data):
         """Handles the rotate left action."""
         step_size = data.get('action_step_size', DEFAULT_ACTION_STEP_SIZE)
-        self._brightness = max(MIN_BRIGHTNESS, self._brightness - step_size)
+        with self._lock:
+            self._brightness = max(MIN_BRIGHTNESS, self._brightness - step_size)
         logging.info(f"Knob rotated left by {step_size}. New brightness: {self._brightness}")
 
     def rotate_right(self, data):
         """Handles the rotate right action."""
         step_size = data.get('action_step_size', DEFAULT_ACTION_STEP_SIZE)
-        self._brightness = min(MAX_BRIGHTNESS, self._brightness + step_size)
+        with self._lock:
+            self._brightness = min(MAX_BRIGHTNESS, self._brightness + step_size)
         logging.info(f"Knob rotated right by {step_size}. New brightness: {self._brightness}")
 
     def double_press(self, data):
@@ -185,10 +192,9 @@ class SmartKnobParser:
 
     def single_press(self, data):
         """Handles the single press action."""
-        self._output = not self._output
+        with self._lock:
+            self._output = not self._output
         logging.info(f"Single press detected. New output: {self._output}")
-
-
 
 parser = SmartKnobParser()
 
