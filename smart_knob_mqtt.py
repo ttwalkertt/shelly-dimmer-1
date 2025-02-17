@@ -3,6 +3,7 @@ import paho.mqtt.client as mqtt
 import logging
 import os
 import threading
+import time
 
 # MQTT Connection
 MQTT_BROKER = "publicweb.local"  # Change this to your MQTT broker address
@@ -36,6 +37,7 @@ logger.addHandler(file_handler)
 
 # Constants
 DEFAULT_ACTION_STEP_SIZE = 10
+STEP_SIZE_DIVISOR = 5
 MAX_BRIGHTNESS = 100
 MIN_BRIGHTNESS = 0
 LOG_FILE_PATH = 'smart_knob_log.txt'
@@ -205,13 +207,13 @@ class SmartKnobParser:
     def brightness_step_up(self, data):
         """Increases brightness by the specified step size."""
         step_size = data.get('action_step_size', 0)
-        self.brightness = min(MAX_BRIGHTNESS, self.brightness + step_size)
+        self.brightness = min(MAX_BRIGHTNESS, self.brightness + int(step_size/STEP_SIZE_DIVISOR))
         logging.info(f"Increasing brightness by {step_size}. New brightness: {self.brightness}")
 
     def brightness_step_down(self, data):
         """Decreases brightness by the specified step size."""
         step_size = data.get('action_step_size', 0)
-        self.brightness = max(MIN_BRIGHTNESS, self.brightness - step_size)
+        self.brightness = max(MIN_BRIGHTNESS, self.brightness - int(step_size/STEP_SIZE_DIVISOR))
         logging.info(f"Decreasing brightness by {step_size}. New brightness: {self.brightness}")
 
     def color_temperature_step_up(self, data):
@@ -264,6 +266,17 @@ class SmartKnobParser:
         else:
             raise TimeoutError("Failed to acquire lock for reporting state")
 
+def worker_thread(parser):
+    """Worker thread function that checks the dirty flag every 500ms and reports the state if dirty."""
+    while True:
+        time.sleep(0.5)  # Sleep for 500ms
+        if parser.dirty:
+            try:
+                state = parser.report_state()
+                logging.info(f"Worker thread reported state: {state}")
+            except TimeoutError as e:
+                logging.error(f"Worker thread error: {e}")
+
 parser = SmartKnobParser()
 
 def on_connect(client, userdata, flags, rc):
@@ -307,6 +320,10 @@ client.on_message = on_message
 
 # Connect to MQTT Broker
 client.connect(MQTT_BROKER, MQTT_PORT, 60)
+
+# Start the worker thread
+worker = threading.Thread(target=worker_thread, args=(parser,), daemon=True)
+worker.start()
 
 # Blocking loop to process network traffic and dispatch callbacks
 client.loop_forever()
