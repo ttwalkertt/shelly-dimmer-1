@@ -41,6 +41,7 @@ MIN_BRIGHTNESS = 0
 LOG_FILE_PATH = 'smart_knob_log.txt'
 MAX_LOG_LINES = 1000
 TRUNCATE_INTERVAL = 1000
+LOCK_TIMEOUT = 2  # Timeout in seconds for acquiring the lock
 
 # Message counter
 message_counter = 0
@@ -63,19 +64,76 @@ class SmartKnobParser:
         logging.debug("SmartKnobParser initialized")
         self._brightness = 0
         self._output = False
-        self._lock = threading.Lock()
+        self._dirty = False
+        self._lock = threading.Condition()
 
     @property
     def brightness(self):
         """Gets the current brightness value."""
-        with self._lock:
-            return self._brightness
+        if self._lock.acquire(timeout=LOCK_TIMEOUT):
+            try:
+                return self._brightness
+            finally:
+                self._lock.release()
+        else:
+            raise TimeoutError("Failed to acquire lock for brightness")
+
+    @brightness.setter
+    def brightness(self, value):
+        """Sets the brightness value and marks the state as dirty."""
+        if self._lock.acquire(timeout=LOCK_TIMEOUT):
+            try:
+                self._brightness = value
+                self._dirty = True  # Set _dirty directly to avoid deadlock
+            finally:
+                self._lock.release()
+        else:
+            raise TimeoutError("Failed to acquire lock for setting brightness")
 
     @property
     def output(self):
         """Gets the current output state."""
-        with self._lock:
-            return self._output
+        if self._lock.acquire(timeout=LOCK_TIMEOUT):
+            try:
+                return self._output
+            finally:
+                self._lock.release()
+        else:
+            raise TimeoutError("Failed to acquire lock for output")
+
+    @output.setter
+    def output(self, value):
+        """Sets the output state and marks the state as dirty."""
+        if self._lock.acquire(timeout=LOCK_TIMEOUT):
+            try:
+                self._output = value
+                self._dirty = True  # Set _dirty directly to avoid deadlock
+            finally:
+                self._lock.release()
+        else:
+            raise TimeoutError("Failed to acquire lock for setting output")
+
+    @property
+    def dirty(self):
+        """Gets the dirty state."""
+        if self._lock.acquire(timeout=LOCK_TIMEOUT):
+            try:
+                return self._dirty
+            finally:
+                self._lock.release()
+        else:
+            raise TimeoutError("Failed to acquire lock for dirty")
+
+    @dirty.setter
+    def dirty(self, value):
+        """Sets the dirty state."""
+        if self._lock.acquire(timeout=LOCK_TIMEOUT):
+            try:
+                self._dirty = value
+            finally:
+                self._lock.release()
+        else:
+            raise TimeoutError("Failed to acquire lock for setting dirty")
 
     def parse_message(self, topic: str, payload: str):
         """
@@ -147,16 +205,14 @@ class SmartKnobParser:
     def brightness_step_up(self, data):
         """Increases brightness by the specified step size."""
         step_size = data.get('action_step_size', 0)
-        with self._lock:
-            self._brightness = min(MAX_BRIGHTNESS, self._brightness + step_size)
-        logging.info(f"Increasing brightness by {step_size}. New brightness: {self._brightness}")
+        self.brightness = min(MAX_BRIGHTNESS, self.brightness + step_size)
+        logging.info(f"Increasing brightness by {step_size}. New brightness: {self.brightness}")
 
     def brightness_step_down(self, data):
         """Decreases brightness by the specified step size."""
         step_size = data.get('action_step_size', 0)
-        with self._lock:
-            self._brightness = max(MIN_BRIGHTNESS, self._brightness - step_size)
-        logging.info(f"Decreasing brightness by {step_size}. New brightness: {self._brightness}")
+        self.brightness = max(MIN_BRIGHTNESS, self.brightness - step_size)
+        logging.info(f"Decreasing brightness by {step_size}. New brightness: {self.brightness}")
 
     def color_temperature_step_up(self, data):
         """Increases color temperature by the specified step size."""
@@ -168,23 +224,20 @@ class SmartKnobParser:
 
     def toggle(self, data):
         """Toggles the state."""
-        with self._lock:
-            self._output = not self._output
-        logging.info(f"Toggling state. New output: {self._output}")
+        self.output = not self.output  # This calls the output setter
+        logging.info(f"Toggling state. New output: {self.output}")
 
     def rotate_left(self, data):
         """Handles the rotate left action."""
         step_size = data.get('action_step_size', DEFAULT_ACTION_STEP_SIZE)
-        with self._lock:
-            self._brightness = max(MIN_BRIGHTNESS, self._brightness - step_size)
-        logging.info(f"Knob rotated left by {step_size}. New brightness: {self._brightness}")
+        self.brightness = max(MIN_BRIGHTNESS, self.brightness - step_size)
+        logging.info(f"Knob rotated left by {step_size}. New brightness: {self.brightness}")
 
     def rotate_right(self, data):
         """Handles the rotate right action."""
         step_size = data.get('action_step_size', DEFAULT_ACTION_STEP_SIZE)
-        with self._lock:
-            self._brightness = min(MAX_BRIGHTNESS, self._brightness + step_size)
-        logging.info(f"Knob rotated right by {step_size}. New brightness: {self._brightness}")
+        self.brightness = min(MAX_BRIGHTNESS, self.brightness + step_size)
+        logging.info(f"Knob rotated right by {step_size}. New brightness: {self.brightness}")
 
     def double_press(self, data):
         """Handles the double press action."""
@@ -192,9 +245,24 @@ class SmartKnobParser:
 
     def single_press(self, data):
         """Handles the single press action."""
-        with self._lock:
-            self._output = not self._output
-        logging.info(f"Single press detected. New output: {self._output}")
+        self.output = not self.output  # This calls the output setter
+        logging.info(f"Single press detected. New output: {self.output}")
+
+    def report_state(self):
+        """Reports the current brightness and output state and clears the dirty flag."""
+        if self._lock.acquire(timeout=LOCK_TIMEOUT):
+            try:
+                state = {
+                    "brightness": self._brightness,
+                    "output": self._output
+                }
+                self.dirty = False
+            finally:
+                self._lock.release()
+            logging.info(f"Reporting state: {state}")
+            return state
+        else:
+            raise TimeoutError("Failed to acquire lock for reporting state")
 
 parser = SmartKnobParser()
 
