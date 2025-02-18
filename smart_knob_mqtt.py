@@ -268,6 +268,7 @@ class SmartKnobParser:
 
 def worker_thread(parser):
     """Worker thread function that checks the dirty flag every 500ms and reports the state if dirty."""
+    topic = 'shellyplus010v/rpc'
     while True:
         time.sleep(0.5)  # Sleep for 500ms
         if parser.dirty:
@@ -276,6 +277,20 @@ def worker_thread(parser):
                 logging.info(f"Worker thread reported state: {state}")
             except TimeoutError as e:
                 logging.error(f"Worker thread error: {e}")
+            # Create the payload with the current parser.output value
+            on_value = parser.output
+            payload = f'{{"id":124, "src":"timtw", "method":"Light.Set", "params":{{"id":0,"on":{str(on_value).lower()}}}}}'
+            #payload = '{"id": 1, "src":"timtw", "method": "Light.GetStatus", "params": {"id": 0}}'
+            # Publish the payload to the topic
+            logging.info(f"Publishing message:{topic} {payload}")
+            try:
+                result = client.publish(topic, payload)
+            # Check if the publish was successful
+                if result.rc != mqtt.MQTT_ERR_SUCCESS:
+                    logging.error(f"Failed to publish message: {result.rc}")
+            except Exception as e:
+                logging.error(f"An error occurred while publishing {topic} {payload}: {e}")
+        
 
 parser = SmartKnobParser()
 

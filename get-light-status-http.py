@@ -4,7 +4,7 @@ import time
 from datetime import datetime
 
 # Set your Shelly device URL (ensure SHELLY is set as an environment variable or replace it with the actual IP)
-SHELLY = "192.168.68.123"  # Replace with your actual Shelly device IP or hostname
+SHELLY = "192.168.68.102"  # Replace with your actual Shelly device IP or hostname
 
 # Define the request URL
 url = f"http://{SHELLY}/rpc"
