@@ -39,8 +39,9 @@ logger.addHandler(file_handler)
 DEFAULT_ACTION_STEP_SIZE = 10
 STEP_SIZE_DIVISOR = 5
 MAX_BRIGHTNESS = 100
-MIN_BRIGHTNESS = 0
-LOG_FILE_PATH = 'smart_knob_log.txt'
+MIN_BRIGHTNESS = 36
+START_BRIGHTNESS = 66
+LOG_FILE_PATH = 'smart_knob_mqtt.log'
 MAX_LOG_LINES = 1000
 TRUNCATE_INTERVAL = 1000
 LOCK_TIMEOUT = 2  # Timeout in seconds for acquiring the lock
@@ -78,6 +79,7 @@ class SmartKnobParser:
             finally:
                 self._lock.release()
         else:
+            logging.error("Failed to acquire lock for brightness")
             raise TimeoutError("Failed to acquire lock for brightness")
 
     @brightness.setter
@@ -87,9 +89,12 @@ class SmartKnobParser:
             try:
                 self._brightness = value
                 self._dirty = True  # Set _dirty directly to avoid deadlock
+                logging.debug(f"Brightness set to {value}, dirty flag set to True")
+                self._lock.notify()  # Notify the worker thread
             finally:
                 self._lock.release()
         else:
+            logging.error("Failed to acquire lock for setting brightness")
             raise TimeoutError("Failed to acquire lock for setting brightness")
 
     @property
@@ -101,6 +106,7 @@ class SmartKnobParser:
             finally:
                 self._lock.release()
         else:
+            logging.error("Failed to acquire lock for output")
             raise TimeoutError("Failed to acquire lock for output")
 
     @output.setter
@@ -110,9 +116,12 @@ class SmartKnobParser:
             try:
                 self._output = value
                 self._dirty = True  # Set _dirty directly to avoid deadlock
+                self._lock.notify()  # Notify the worker thread
+                logging.debug(f"Output set to {value}, dirty flag set to True")
             finally:
                 self._lock.release()
         else:
+            logging.error("Failed to acquire lock for setting output")
             raise TimeoutError("Failed to acquire lock for setting output")
 
     @property
@@ -124,6 +133,7 @@ class SmartKnobParser:
             finally:
                 self._lock.release()
         else:
+            logging.error("Failed to acquire lock for dirty")
             raise TimeoutError("Failed to acquire lock for dirty")
 
     @dirty.setter
@@ -132,9 +142,11 @@ class SmartKnobParser:
         if self._lock.acquire(timeout=LOCK_TIMEOUT):
             try:
                 self._dirty = value
+                logging.debug(f"Dirty flag set to {value}")
             finally:
                 self._lock.release()
         else:
+            logging.error("Failed to acquire lock for setting dirty")
             raise TimeoutError("Failed to acquire lock for setting dirty")
 
     def parse_message(self, topic: str, payload: str):
@@ -227,7 +239,11 @@ class SmartKnobParser:
     def toggle(self, data):
         """Toggles the state."""
         self.output = not self.output  # This calls the output setter
-        logging.info(f"Toggling state. New output: {self.output}")
+        if self.output:
+            if self.brightness < START_BRIGHTNESS:
+                self.brightness = START_BRIGHTNESS
+        
+        logging.info(f"Toggling state. New output: {self.output} brightness: {self.brightness}")
 
     def rotate_left(self, data):
         """Handles the rotate left action."""
@@ -259,24 +275,29 @@ class SmartKnobParser:
                     "output": self._output
                 }
                 self.dirty = False
+                logging.debug("Dirty flag cleared")
             finally:
                 self._lock.release()
             logging.info(f"Reporting state: {state}")
             return state
         else:
+            logging.error("Failed to acquire lock for reporting state")
             raise TimeoutError("Failed to acquire lock for reporting state")
 
 def worker_thread(parser):
-    """Worker thread function that checks the dirty flag every 500ms and reports the state if dirty."""
+    """Worker thread function that waits for the condition variable and reports the state if dirty."""
     topic = 'shellyplus010v/rpc'
     while True:
-        time.sleep(0.5)  # Sleep for 500ms
-        if parser.dirty:
+        if parser._lock.acquire(timeout=LOCK_TIMEOUT):
             try:
+                while not parser.dirty:
+                    parser._lock.wait()  # Wait for the condition variable to be notified
                 state = parser.report_state()
                 logging.info(f"Worker thread reported state: {state}")
             except TimeoutError as e:
                 logging.error(f"Worker thread error: {e}")
+            finally:
+                parser._lock.release()
             # Create the payload with the current parser.output value and brightness
             on_value = parser.output
             brightness_value = parser.brightness
