@@ -277,20 +277,19 @@ def worker_thread(parser):
                 logging.info(f"Worker thread reported state: {state}")
             except TimeoutError as e:
                 logging.error(f"Worker thread error: {e}")
-            # Create the payload with the current parser.output value
+            # Create the payload with the current parser.output value and brightness
             on_value = parser.output
-            payload = f'{{"id":124, "src":"timtw", "method":"Light.Set", "params":{{"id":0,"on":{str(on_value).lower()}}}}}'
-            #payload = '{"id": 1, "src":"timtw", "method": "Light.GetStatus", "params": {"id": 0}}'
+            brightness_value = parser.brightness
+            payload = f'{{"id":124, "src":"timtw", "method":"Light.Set", "params":{{"id":0,"on":{str(on_value).lower()},"brightness":{brightness_value}}}}}'
             # Publish the payload to the topic
-            logging.info(f"Publishing message:{topic} {payload}")
+            logging.info(f"Publishing message: {topic} {payload}")
             try:
                 result = client.publish(topic, payload)
-            # Check if the publish was successful
+                # Check if the publish was successful
                 if result.rc != mqtt.MQTT_ERR_SUCCESS:
                     logging.error(f"Failed to publish message: {result.rc}")
             except Exception as e:
                 logging.error(f"An error occurred while publishing {topic} {payload}: {e}")
-        
 
 parser = SmartKnobParser()
 
