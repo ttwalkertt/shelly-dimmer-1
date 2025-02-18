@@ -23,8 +23,8 @@ console_handler = logging.StreamHandler()
 file_handler = logging.FileHandler('smart_knob_mqtt.log')
 
 # Set level for handlers
-console_handler.setLevel(logging.DEBUG)
-file_handler.setLevel(logging.DEBUG)
+console_handler.setLevel(logging.ERROR)
+file_handler.setLevel(logging.WARNING)
 
 # Create formatter and add it to the handlers
 formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
